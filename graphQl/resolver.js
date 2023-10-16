@@ -1,21 +1,20 @@
 const User = require('../model/user')
 const resolvers = {
-    Query: {
-        users: async (_, { page = 1, limit = 10, sortBy = '_id' }) => {
-          try {
-            const users = await User.find()
-              .skip((page - 1) * limit)
-              .limit(limit)
-              .sort(sortBy);
-    
-    
-            return users; 
-          } catch (error) {
-            console.error(error);
-            throw new Error("Could not fetch users.");
-          }
-        },
-      },
+  Query: {
+    users: async (_, { page = 1, limit = 10, sortBy = '_id' }) => {
+      try {
+        const users = await User.find()
+          .skip((page - 1) * limit)
+          .limit(limit)
+          .sort(sortBy);
+  
+        return users;
+      } catch (error) {
+        console.error(error);
+        throw new Error("Could not fetch users.");
+      }
+    },
+  },
     Mutation: {
       createUser: async (_, { username, email, password }) => {
         try {
