@@ -13,6 +13,8 @@ const typeDefs = gql`
     deletedUser: User
   }
 
+
+
   type Query {
     users(page: Int, limit: Int, sortBy: String): [User]
     user(id: ID!): User

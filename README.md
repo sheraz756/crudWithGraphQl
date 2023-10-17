@@ -51,3 +51,7 @@ mutation {
   }
 }
 
+task3:
+data will fetch from cache:
+http://localhost:4000/api/user/652e1c9ca83764eb933f9668
+get req

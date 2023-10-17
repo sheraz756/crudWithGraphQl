@@ -5,6 +5,9 @@ const resolvers = require('./graphQl/resolver');
 require('dotenv').config({path:'./.env'})
 const connect = require('./Db/index')
 const app = express();
+const cache = require('./routes/cacheRoutes')
+const errorHandler = require('./middleware/errorHandle');
+
 
 const startServer = async () => {
   const server = new ApolloServer({
@@ -14,8 +17,12 @@ const startServer = async () => {
 
   await server.start();
 
+//errorHandle middlerware
+app.use(errorHandler);
+//apolloServer middlerware
   server.applyMiddleware({ app });
-
+  //cache middlerware
+app.use('/api',cache)
 //dbConnected
 connect()
 
